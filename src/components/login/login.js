@@ -47,7 +47,7 @@ class Login extends Component {
               <div className="col-xs-12">
                 <button
                   style={{marginTop: 8}}
-                  className="btn btn-info btn-block btn-flat"
+                  className="btn btn-block btn-default"
                 >
                   Register
                 </button>
