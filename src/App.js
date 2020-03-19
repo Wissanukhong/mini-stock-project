@@ -14,7 +14,6 @@ export default class App extends Component {
         <div>
           <Header />
           <Menu />
-
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Footer />
