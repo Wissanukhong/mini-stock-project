@@ -15,7 +15,7 @@ class Register extends Component {
           style={{ background: "whitesmoke", borderRadius: 10 }}
         >
           <p className="login-box-msg">Sign in to start your session</p>
-          <form action="../../index2.html" method="post">
+          <form>
             <div className="form-group has-feedback">
               <input
                 type="email"
@@ -41,6 +41,22 @@ class Register extends Component {
                   className="btn btn-primary btn-block btn-flat"
                 >
                   Register
+                </button>
+              </div>
+            </div>
+            {/* cancel */}
+            <div className="row">
+              <div className="col-xs-12">
+                <button
+                  onClick={e => {
+                    e.preventDefault();
+                    this.props.history.goBack()
+                  }}
+                  type="submit"
+                  style={{ marginTop: 8 }}
+                  className="btn btn-block btn-default"
+                >
+                  cancel
                 </button>
               </div>
             </div>

@@ -10,9 +10,12 @@ class Login extends Component {
           </a>
         </div>
         {/* /.login-logo */}
-        <div className="login-box-body" style={{background: "whitesmoke", borderRadius: 10}}>
+        <div
+          className="login-box-body"
+          style={{ background: "whitesmoke", borderRadius: 10 }}
+        >
           <p className="login-box-msg">Sign in to start your session</p>
-          <form action="../../index2.html" method="post">
+          <form>
             <div className="form-group has-feedback">
               <input
                 type="email"
@@ -46,14 +49,15 @@ class Login extends Component {
             <div className="row">
               <div className="col-xs-12">
                 <button
-                  style={{marginTop: 8}}
+                  onClick={()=>this.props.history.push("/register")}
+                  type="submit"
+                  style={{ marginTop: 8 }}
                   className="btn btn-block btn-default"
                 >
                   Register
                 </button>
               </div>
             </div>
-
           </form>
         </div>
       </div>

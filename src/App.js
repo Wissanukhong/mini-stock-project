@@ -22,7 +22,7 @@ export default class App extends Component {
           <Route path="/register" component={Register} />
 
           <Route exact={true} path="/" component={this.redirectToLogin} />
-          <Route path='*' exact={true} component={this.redirectToLogin} />
+          {/* <Route path='*' exact={true} component={this.redirectToLogin} /> */}
           <Footer />
         </div>
       </Router>
