@@ -73,3 +73,24 @@
 
 ```
 *** ถ้าเรามีคำสั่ง + "/uploaded" จะเป็นการป้องกันไม่ให้ User เห็น Code ของเรา
+
+
+### ทำการติดตั้ง cors เพื่อความปลอดภัยในการทำ network
+
+```js
+    npm i cors
+```
+
+จากนั้นทำการเรียกใช้งาน 
+```js
+
+    const cors = require('cors');
+
+    app.use(cors());
+```
+
+### ทำการติดตั้ง axios เพื่อทำ Client
+```js
+    npm i axios 
+```
+จากนั้นทำการตรวจเช็คที่ package.json ว่ามี axios มาหรือยัง

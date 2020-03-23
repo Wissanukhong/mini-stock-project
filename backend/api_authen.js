@@ -9,7 +9,7 @@ router.post("/register", (req, res)=>{
 
     const {username, password} =req.body
 
-    res.json({result: "register", username, password})
+    res.json({result: "OK", username, password})
 })
 
 module.exports = router;
