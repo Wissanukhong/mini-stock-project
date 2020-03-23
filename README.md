@@ -66,3 +66,10 @@
 * npm i -g nodemon คือการให้ระบบทำการแบบ update auto โดยที่เราไม่ต้อง npm start <_filename> ทุกครั้งที่มีการแก้ไข เป็นการลดขั้นตอนในนั้นเอง
 
 * npm install express bodyparser fs-extra formidable คือการติดตั้ง Libery สำหรับการเขียน Backend 
+
+### การ upload file picture form backend 
+```js
+    app.use(express.static(__dirname + "/uploaded"))
+
+```
+*** ถ้าเรามีคำสั่ง + "/uploaded" จะเป็นการป้องกันไม่ให้ User เห็น Code ของเรา
