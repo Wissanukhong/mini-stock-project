@@ -9,6 +9,7 @@
 - วิธีการแก้ไข Bug เบื้องต้น
 - Document
 - Redirec คือการตั้งค่าให้ไปที่หน้าเริ่มต้น
+- Backend การติดตั้งเครื่องมือสำหรับการเขียน Backend
 
 ### Redirect
 
@@ -34,3 +35,34 @@
 ```js
     <span>#Debug: {JSON.stringify(this.state)}</span>
 ```
+# Backend
+
+### Backend การติดตั้งเครื่องมือสำหรับการเขียน Backend
+เราจะต้องสร้าง Folder สำหรับ Backend ขึ้นมาก่อน จากนั้นทำการติดตั้ง คำสั่งต่างๆ ดังต่อไปนี้ 
+
+*ก่อนที่เราจะติดตั้งเราจะต้องทำการเช็ค Path ก่อนว่าถูกต้องหรือไม่ ด้วยคำสั่ง pwd 
+
+```linux
+
+    pwd 
+
+    cd
+
+```
+
+จากนั้นก็ติดตั้งดังต่อไปนี้ 
+
+```node
+
+    npm i init -y
+    npm i -g nodemon
+    npm install express bodyparser fs-extra formidable 
+
+
+```
+
+* npm i init -y คือการติดตั้ง pakage แบบ Default โดยที่เราไม่ต้องกด อะไรเลย
+
+* npm i -g nodemon คือการให้ระบบทำการแบบ update auto โดยที่เราไม่ต้อง npm start <_filename> ทุกครั้งที่มีการแก้ไข เป็นการลดขั้นตอนในนั้นเอง
+
+* npm install express bodyparser fs-extra formidable คือการติดตั้ง Libery สำหรับการเขียน Backend 
