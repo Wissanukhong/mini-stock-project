@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Axios from 'axios'
+import {httpClient} from './../../utils/HttpClient';
+import { server } from "../../constants";
+//ถ้ามีคำว่า Default  {ไม่ต้องมี} แต่ถ้าไม่เป็น Default จะต้องมี {ปีกกาด้วย}
 
 class Register extends Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class Register extends Component {
   // การประกาศตัวแปรให้กับ function โดยการใช้ arrow function
   onClickRegister = () => {
     // จะต้องทำการตรวจเช็คทุกครั้งว่า api ถูกยิงไปที่ postman ถูกต้องไหม ถ้าไม่ถูกต้อง ต้องไปเช็คที่ฝั่ง Node ก่อน ว่ามีความถูกต้องไหม ถ้าถูกต้องก็กลับมาเช็คที่ Axios อีกที ว่าถูกต้องไหม 
-    Axios.post("http://localhost:8085/api/v2/authen/register", this.state).then(response=>{ 
+    // Axios.post("http://localhost:8085/api/v2/authen/register", this.state).then(response=>{ 
+    //   alert(JSON.stringify(response.data))
+    // })
+    httpClient.post(server.REGISTER_URL, this.state).then(response=>{
       alert(JSON.stringify(response.data))
     })
   }
@@ -52,7 +57,6 @@ class Register extends Component {
                 className="form-control"
                 placeholder="Password"
               />
-              console.log(name)
               <span className="glyphicon glyphicon-lock form-control-feedback" />
             </div>
 
