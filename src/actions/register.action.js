@@ -22,7 +22,6 @@ export const setRegisterStateToFailed = () => ({
 
 export const register = (history, credentail) => {
   return async dispatch => {
-      debugger
     dispatch(setRegisterStateToFetching());
     try {
       let result = await httpClient.post(server.REGISTER_URL, credentail);

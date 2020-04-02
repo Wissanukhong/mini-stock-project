@@ -23,6 +23,7 @@ router.post("/login", async(req, res) => {
     }
 });
 
+// Register
 router.post("/register", async (req, res) => {
   try {
     req.body.password = bcrypt.hashSync(req.body.password, 8);
