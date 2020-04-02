@@ -68,15 +68,15 @@ class Login extends Component {
 
             {/* เอาไว้สำหรับ ShowError โดยการเรียกใช้ Function */}
             {/* Ternery condition */}
-            {this.props.loginReducer.isError ? this.showError() : null}
+            {this.props.loginReducer.isError ? this.showError() : null }
 
             {/* Login */}
             <div className="row">
               <div className="col-xs-12">
                 <button
-                  onClick={e => {
-                    e.preventDefault();
-                    this.props.login(this.props.history, this.state);
+                    onClick={e => {
+                      e.preventDefault();
+                      this.props.login(this.props.history, this.state);
                   }}
                   type="submit"
                   className="btn btn-primary btn-block btn-flat"
@@ -108,8 +108,8 @@ class Login extends Component {
 
 // shurtcut "rxmap"
 const mapStateToProps = ({ loginReducer }) => ({ loginReducer });
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = {
   login
-});
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -20,11 +20,11 @@ export const setRegisterStateToFailed = () => ({
   type: HTTP_REGISTER_FAILED
 });
 
-export const register = (history, credentail) => {
+export const register = (history, credential) => {
   return async dispatch => {
     dispatch(setRegisterStateToFetching());
     try {
-      let result = await httpClient.post(server.REGISTER_URL, credentail);
+      let result = await httpClient.post(server.REGISTER_URL, credential);
 
       if (result.data.result == OK) {
         // success
