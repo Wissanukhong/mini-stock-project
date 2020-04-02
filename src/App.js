@@ -4,6 +4,7 @@ import Menu from "./components/menu/menu";
 import Footer from "./components/footer/footer";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
+import Stock from "./components/stock/stock";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
@@ -20,6 +21,7 @@ export default class App extends Component {
           <Menu />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/stock" component={Stock} />
 
           <Route exact={true} path="/" component={this.redirectToLogin} />
           {/* <Route path='*' exact={true} component={this.redirectToLogin} /> */}

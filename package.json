@@ -39,6 +39,6 @@
     ]
   },
   "devDependencies": {
-    "create-react-component-folder": "^0.1.30"
+    "create-react-component-folder": "^0.1.31"
   }
 }

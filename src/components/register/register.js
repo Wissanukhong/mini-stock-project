@@ -15,6 +15,7 @@ class Register extends Component {
     };
   }
 
+  // ShowError Function
   showError = ()=>{
     return (
       <div className="alert alert-danger alert-dismissible">
