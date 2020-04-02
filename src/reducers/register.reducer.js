@@ -1,4 +1,8 @@
-import { HTTP_REGISTER_FETCHING, HTTP_REGISTER_SUCCESS, HTTP_REGISTER_FAILED } from "../constants";
+import {
+  HTTP_REGISTER_FETCHING,
+  HTTP_REGISTER_SUCCESS,
+  HTTP_REGISTER_FAILED
+} from "../constants";
 
 const initialState = {
   result: null,
