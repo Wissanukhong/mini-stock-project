@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {server} from "../../constants";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Header extends Component {
   render() {
@@ -360,6 +361,7 @@ class Header extends Component {
                       <div className="pull-right" onClick={()=>{
                         this.props.history.push("/login")
                         localStorage.removeItem(server.LOGIN_PASSED);
+                        this.props.appReducer.app.forceUpdate(); //เพื่อให้หน้า Login ทำการ reflesh ไม่แสดง ส่วนอื่นๆ เวลาที่เรา sign out นั้นเอง 
                       }}>
                         <a href="#" className="btn btn-default btn-flat">
                           Sign out
@@ -382,7 +384,22 @@ class Header extends Component {
   }
 }
 
-export default  withRouter(Header);
+// เราจะต้องทำการ Destructuring
+const mapStateToProps = ({appReducer}) => ({
+  appReducer
+})
+
+const mapDispatchToProps = {
+  
+}
+
+// export default connect redux เพื่อทำการส่งค่าไปใช้งาน
+export default connect (mapStateToProps, mapDispatchToProps) (withRouter(Header));
+
+
+// หลักจากที่มีการเรียกใช้งาน Redux แล้วเราจะไม่ได้ใช้ export default  withRouter(Header); เนื่องจากจะต้องเอาไปกำหนด export defaut แบบ Redux นั้นเอง
+// withRouter คือการเรียกใช้งาน Function ที่ไม่อยู่ใน Router หรือเรียกง่ายๆ ว่าเป็นการเรียกใช้อะไรบางอย่างที่ไม่ได้อยู่ในน Router มาแสดงผลนั้นเอง
+// export default  withRouter(Header);
 
 /**
  * ในกรณีที่ ส่วนนั้นไม่ได้อยู่ที่  Router เราจะต้องใช้ higher function  ในการเขียน
