@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {server} from "../../constants";
+import { withRouter } from "react-router-dom";
 
 class Header extends Component {
   render() {
@@ -355,7 +357,10 @@ class Header extends Component {
                           Profile
                         </a>
                       </div>
-                      <div className="pull-right">
+                      <div className="pull-right" onClick={()=>{
+                        this.props.history.push("/login")
+                        localStorage.removeItem(server.LOGIN_PASSED);
+                      }}>
                         <a href="#" className="btn btn-default btn-flat">
                           Sign out
                         </a>
@@ -377,4 +382,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default  withRouter(Header);
+
+/**
+ * ในกรณีที่ ส่วนนั้นไม่ได้อยู่ที่  Router เราจะต้องใช้ higher function  ในการเขียน
+ * โดยมีขั้นตอนการเขียนดังต่อไปนี้ 
+ * 1.ทำการ import { withRouter } from "react-router-dom"; เพื่อเรียกเข้ามาใช้งาน
+ * 2.ทำการเรียกใช้ผ่าน withRouter(ไฟล์ที่เราต้องการ) 
+ * 
+ */
