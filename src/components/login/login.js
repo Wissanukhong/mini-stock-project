@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login } from "./../../actions/login.action";
+import { login, autoLogin } from "./../../actions/login.action";
 import { connect } from "react-redux";
 
 class Login extends Component {
@@ -10,6 +10,11 @@ class Login extends Component {
       username: "",
       password: ""
     };
+  }
+
+  // เพื่อทำการตรวจเช็คว่าถ้าหากเรา Login แล้วควรไม่กลับไปที่หน้า stock จนกว่าจะ sign out 
+  componentDidMount(){
+    this.props.autoLogin(this.props.history);
   }
 
   // ShowError Function
@@ -109,7 +114,7 @@ class Login extends Component {
 // shurtcut "rxmap"
 const mapStateToProps = ({ loginReducer }) => ({ loginReducer });
 const mapDispatchToProps = {
-  login
+  login, autoLogin
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

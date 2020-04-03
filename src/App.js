@@ -7,12 +7,26 @@ import Register from "./components/register/register";
 import Stock from "./components/stock/stock";
 import { server, YES } from "./constants";
 import {setApp} from "./actions/app.action"
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 const isLoggedIn = () => {
   return localStorage.getItem(server.LOGIN_PASSED) == YES;
 };
+
+// Protected Route เอาไว้สำหรับป้องกัน User ที่ยังไม่ได้ Login เข้ามาดูข้อมูลต่างๆ ได้
+const SecuredRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      isLoggedIn() === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
 
 class App extends Component {
   // componentDidMount จะเอาไว้สำหรับเรียกใช้อะไรบางอย่างเมื่อเราทำการ Load เสร็จเรียบร้อยแล้ว
@@ -30,12 +44,14 @@ class App extends Component {
         <div>
           {isLoggedIn() && <Header />}
           {isLoggedIn() && <Menu />}
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/stock" component={Stock} />
-
-          <Route exact={true} path="/" component={this.redirectToLogin} />
-          {/* <Route path='*' exact={true} component={this.redirectToLogin} /> */}
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            {/* จะเห็นว่าถ้าหากเราเพิ่ม SecuredRoute โดยการเรียกใช้ จะทำให้ไม่สามารถเข้าหน้าเว็บโดยตรงได้ ถ้าเรายังไม่ได้ทำการ Login*/}
+            <SecuredRoute path="/stock" component={Stock} /> 
+            <Route exact={true} path="/" component={this.redirectToLogin} />
+            <Route path='*' exact={true} component={this.redirectToLogin} />
+          </Switch>
           {isLoggedIn() && <Footer />}
         </div>
       </Router>
