@@ -3,11 +3,15 @@ import React, { Component } from "react";
 class Stock extends Component {
   // ตัวแปร Golbal ไม่ต้องมี var let comst สามารถใส่ลงไปได้เลย
   dummyData = [
-    { c1:"xxx", c2:"xxx", c3:"xxx", c4:"xxx", c5:"xxx",}
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" }
   ];
 
   // ทำการผูกข้อมูลเพื่อนำไปแสดง
-  renderRows = () => {
+  createRows = () => {
     return this.dummyData.map(item => (
       <tr>
         <td>{item.c1}</td>
@@ -64,9 +68,7 @@ class Stock extends Component {
                       </tr>
                     </thead>
                     {/* tbody */}
-                    <tbody>
-                      <tr>{this.renderRows()}</tr>
-                    </tbody>
+                    <tbody>{this.createRows()}</tbody>
                   </table>
                 </div>
               </div>
