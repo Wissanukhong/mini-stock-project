@@ -1,26 +1,47 @@
 import React, { Component } from "react";
+import * as actions from "./../../actions/stock.action";
+import { connect } from "react-redux";
+
+// import { imageUrl } from "./../../constants";
+// import { Link } from "react-router-dom";
+import _ from "lodash";
+// import Moment from "react-moment";
+// import NumberFormat from "react-number-format";
+// import "./stock.css";
+// import Swal from "sweetalert2";
+// import withReactContent from "sweetalert2-react-content";
 
 class Stock extends Component {
+  componentDidMount() {
+    this.debounceSearch = _.debounce(this.props.getProductByKeyword, 500);
+    this.props.getProducts();
+  }
+
   // ตัวแปร Golbal ไม่ต้องมี var let comst สามารถใส่ลงไปได้เลย
   dummyData = [
     { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
     { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
     { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
     { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
-    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" }
+    { c1: "xxx", c2: "xxx", c3: "xxx", c4: "xxx", c5: "xxx" },
   ];
 
   // ทำการผูกข้อมูลเพื่อนำไปแสดง
   createRows = () => {
-    return this.dummyData.map(item => (
-      <tr>
-        <td>{item.c1}</td>
-        <td>{item.c2}</td>
-        <td>{item.c3}</td>
-        <td>{item.c4}</td>
-        <td>{item.c5}</td>
-      </tr>
-    ));
+    const { result } = this.props.stockReducer;
+
+    // ใช้ condition if เพื่อที่จะตรวจเช็คว่า โปรแกรมมีค่าว่างหรือไม่(์Null) แต่ถ้าไม่เป็นค้าว่างก็ไม่ต้อง Return อะไรออกมานั้นเอง
+    if (result != null) {
+      return result.map((item) => (
+        <tr>
+          <td>{item.id}</td>
+          <td>{item.name}</td>
+          <td>{item.image}</td>
+          <td>{item.price}</td>
+          <td>{item.stock}</td>
+        </tr>
+      ));
+    }
   };
 
   render() {
@@ -83,4 +104,13 @@ class Stock extends Component {
   }
 }
 
-export default Stock;
+const mapStateToProps = ({ stockReducer }) => ({
+  stockReducer,
+});
+
+const mapDispatchToProps = {
+  // spreading
+  ...actions,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stock);
