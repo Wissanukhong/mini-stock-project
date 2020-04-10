@@ -15,5 +15,5 @@ app.use("/api/v2/authen/", require("./api_authen.js"))
 app.use("/api/v2/stock/", require("./api_stock"))
 
 app.listen(8085, ()=>{
-    console.log("Bcakend is running....")
+    console.log("Backend is running....")
 })
