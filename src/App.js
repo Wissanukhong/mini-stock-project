@@ -5,6 +5,8 @@ import Footer from "./components/footer/footer";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
 import Stock from "./components/stock/stock";
+import StockEdit from "./components/stockEdit";
+import StockCreate from "./components/stockCreate";
 import { server, YES } from "./constants";
 import {setApp} from "./actions/app.action"
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
@@ -49,6 +51,8 @@ class App extends Component {
             <Route path="/register" component={Register} />
             {/* จะเห็นว่าถ้าหากเราเพิ่ม SecuredRoute โดยการเรียกใช้ จะทำให้ไม่สามารถเข้าหน้าเว็บโดยตรงได้ ถ้าเรายังไม่ได้ทำการ Login*/}
             <SecuredRoute path="/stock" component={Stock} /> 
+            <SecuredRoute path="/stock-create" component={StockCreate}/>
+            <SecuredRoute path="/stock-edit/:id" component={StockEdit}/>   
             <Route exact={true} path="/" component={this.redirectToLogin} />
             <Route path='*' exact={true} component={this.redirectToLogin} />
           </Switch>
