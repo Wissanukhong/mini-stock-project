@@ -69,4 +69,19 @@ router.put("/product", async (req, res) => {
   }
 });
 
+//delete
+router.delete("/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let result = await product.findOne({ where: { id: id } });
+    await fs.remove(
+      path.resolve(__dirname + "/uploaded/images/") + "/" + result.image
+    );
+    result = await product.destroy({ where: { id: id } });
+    res.json({ result: constants.kResultOk, message: JSON.stringify(result) });
+  } catch (error) {
+    res.json({ result: constants.kResultNok, message: "Internal error" });
+  }
+});
+
 module.exports = router;
