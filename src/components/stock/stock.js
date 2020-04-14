@@ -28,26 +28,34 @@ class Stock extends Component {
 
   // ทำการผูกข้อมูลเพื่อนำไปแสดง
   createRows = () => {
-    const { result } = this.props.stockReducer;
-
-    // ใช้ condition if เพื่อที่จะตรวจเช็คว่า โปรแกรมมีค่าว่างหรือไม่(์Null) แต่ถ้าไม่เป็นค้าว่างก็ไม่ต้อง Return อะไรออกมานั้นเอง
-    if (result != null) {
-      return result.map(item => (
-        <tr>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.image}</td>
-          <td>{item.price}</td>
-          <td>{item.stock}</td>
-          <td>xxx</td>
+    const { result, isFetching } = this.props.stockReducer;
+    return (
+      !isFetching &&
+      result != null &&
+      result.map(item => (
+        <tr key={item.id}>
+          <td>
+            <Moment format="DD/MM/YYYY">{item.created}</Moment>
+          </td>
+          <td>
+            <span style={{ marginRight: 10, minHe: 100 }}>
+              <img
+                src={`${imageUrl}/images/${item.image}?dummy=${Math.random()}`}
+                style={{ maxWidth: 50 }}
+              />
+            </span>
+            {item.name}
+          </td>
+          <td>item.created</td>
+          <td>item.created</td>
+          <td>item.created</td>
+          <td>item.created</td>
         </tr>
-      ));
-    }
+      ))
+    );
   };
 
-  onChange() {
-    
-  }
+  onChange() {}
 
   render() {
     return (
